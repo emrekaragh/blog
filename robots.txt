@@ -1,1 +1,1 @@
-Sitemap: https://emrekaragh.github.io/my_fastpages/sitemap.xml
+Sitemap: https://emrekaragh.github.io/blog/sitemap.xml
