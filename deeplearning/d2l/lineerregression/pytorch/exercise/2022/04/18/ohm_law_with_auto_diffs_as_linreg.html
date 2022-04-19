@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Can auto differentiations solve the Ohm’s law as Linear Regression Problem? | Emre Kara - Blog</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Can auto differentiations solve the Ohm’s law as Linear Regression Problem?" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Solution of Exercise in Deep Dive Into Deeplearning Book - Ohm’s law with auto differentiations as linear regression" />
+<meta property="og:description" content="Solution of Exercise in Deep Dive Into Deeplearning Book - Ohm’s law with auto differentiations as linear regression" />
+<link rel="canonical" href="https://emrekaragh.github.io/blog/deeplearning/d2l/lineerregression/pytorch/exercise/2022/04/18/ohm_law_with_auto_diffs_as_linreg.html" />
+<meta property="og:url" content="https://emrekaragh.github.io/blog/deeplearning/d2l/lineerregression/pytorch/exercise/2022/04/18/ohm_law_with_auto_diffs_as_linreg.html" />
+<meta property="og:site_name" content="Emre Kara - Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-04-18T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Can auto differentiations solve the Ohm’s law as Linear Regression Problem?" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-04-18T00:00:00-05:00","datePublished":"2022-04-18T00:00:00-05:00","description":"Solution of Exercise in Deep Dive Into Deeplearning Book - Ohm’s law with auto differentiations as linear regression","headline":"Can auto differentiations solve the Ohm’s law as Linear Regression Problem?","mainEntityOfPage":{"@type":"WebPage","@id":"https://emrekaragh.github.io/blog/deeplearning/d2l/lineerregression/pytorch/exercise/2022/04/18/ohm_law_with_auto_diffs_as_linreg.html"},"url":"https://emrekaragh.github.io/blog/deeplearning/d2l/lineerregression/pytorch/exercise/2022/04/18/ohm_law_with_auto_diffs_as_linreg.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://emrekaragh.github.io/blog/feed.xml" title="Emre Kara - Blog" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">Emre Kara - Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Can auto differentiations solve the Ohm&#39;s law as Linear Regression Problem?</h1><p class="page-description">Solution of Exercise in Deep Dive Into Deeplearning Book - Ohm's law with auto differentiations as linear regression</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-04-18T00:00:00-05:00" itemprop="datePublished">
+        Apr 18, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#DeepLearning">DeepLearning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#D2L">D2L</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#LineerRegression">LineerRegression</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#PyTorch">PyTorch</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/blog/categories/#Exercise">Exercise</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#can-auto-differentiations--solve-the-ohms-law-as-linear-regression-problem">Can auto differentiations  solve the Ohm’s law as Linear Regression Problem?</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#problem-definition">Problem Definition</a></li>
+<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h2"><a href="#method">Method</a></li>
+<li class="toc-entry toc-h2"><a href="#creating-data">Creating Data</a></li>
+<li class="toc-entry toc-h2"><a href="#building-model">Building Model</a></li>
+<li class="toc-entry toc-h2"><a href="#training">Training</a></li>
+<li class="toc-entry toc-h2"><a href="#results">Results</a></li>
+<li class="toc-entry toc-h2"><a href="#conclusion">Conclusion</a></li>
+<li class="toc-entry toc-h2"><a href="#discussion">Discussion</a></li>
+<li class="toc-entry toc-h2"><a href="#author">Author</a></li>
+</ul>
+</li>
+</ul><h1 id="can-auto-differentiations--solve-the-ohms-law-as-linear-regression-problem">
+<a class="anchor" href="#can-auto-differentiations--solve-the-ohms-law-as-linear-regression-problem" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can auto differentiations  solve the Ohm’s law as Linear Regression Problem?</h1>
+
+<p>The question and some of the codes in this study are taken from the a part of the <strong><a href="https://d2l.ai/index.html">Dive Into Deep Learning</a></strong> book, Section 3.2.9</p>
+
+<h2 id="problem-definition">
+<a class="anchor" href="#problem-definition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problem Definition</h2>
+
+<p><strong>Dive Into Deep Learning - 3.2.9.2:</strong> Assume that you are
+   <strong><a href="https://en.wikipedia.org/wiki/Georg_Ohm">Georg Simon Ohm</a></strong> trying to come up
+   with a model between voltage and current. Can you use auto differentiation to learn the parameters of your model?</p>
+
+<p><strong>Ohm’s law:</strong></p>
+
+<p><img src="attachment:9b6fa366-54a4-4c5e-af7c-4ef7e0925c8f.png" alt="image.png"></p>
+
+<h2 id="introduction">
+<a class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>Using Linear Regression is more suitable in such situations, that all the points in data locates nearly linear form. In real world problems we can check this with different methods i.e: Plotting the data points and check manually. But in our situation, if the problem has exact formula like above, we can check it directly by comparing our formula to linear equation formula</p>
+
+<p>“A linear regression line has an equation of the form $Y = a + bX$, where $X$ is the explanatory variable and $Y$ is the dependent variable. The slope of the line is $b$, and $a$ is the intercept (the value of $y$ when $x = 0$).” <strong><a href="http://www.stat.yale.edu/Courses/1997-98/101/linreg.htm">Yale University Linear Regression Course 1997-98</a></strong></p>
+
+<ol>
+  <li>İf we expand the linear equation formula with 2 independent variable as in ohm’law equation, we get something like that:</li>
+</ol>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>y</mi><mo>=</mo><mi>a</mi><mo>+</mo><mi>b</mi><mi>X</mi><mtext>₁</mtext><mo>+</mo><mi>c</mi><mi>X</mi><mtext>₂</mtext></mrow><annotation encoding="application/x-tex">y = a + bX₁ + cX₂</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mord">₁</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mord">₂</span></span></span></span></span>
+
+<ol>
+  <li>Now we can use the I and R as independent variables and V as dependent variable in Ohm’s law. If I,R and V were linearly related, ohm’s formula would look like this, as you can see this is so far from ohm’s law. So, we can say: Ohm’s law formula is not suitable for solving the equation with Linear Regression.</li>
+</ol>
+
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>V</mi><mo>=</mo><mi>a</mi><mo>+</mo><mi>b</mi><mi>I</mi><mo>+</mo><mi>c</mi><mi>R</mi></mrow><annotation encoding="application/x-tex">V = a + bI + cR</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span></span>
+
+<ol>
+  <li>
+    <p>As you can remember, Our challenge was not only applying Linear Regression on ohm’law, Also using automatic differentiations to learn parameters while doing this</p>
+
+    <p>The using auto differentiations to learn parameters is called “Gradient Descent”</p>
+
+    <p>Learning the parameters is optimization method which tries to find optimal parameters which is giving minimum error. And Gradient Descent is the method that tells us which way to go to find optimal parameters.</p>
+
+    <p>In the first two steps, I think we proved that we cannot use automatic derivatives to learn parameters by using math and equations, But let’s get our hands dirty and show it practically too</p>
+  </li>
+</ol>
+
+<h2 id="method">
+<a class="anchor" href="#method" aria-hidden="true"><span class="octicon octicon-link"></span></a>Method</h2>
+
+<p>In this method (using auto differentiations to learn parameters), we expect to approach the optimal parameters step by step by reducing our error in each iteration.
+If our assumption was true, <strong>we should observe our error is decreasing between steps</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">d2l</span> <span class="kn">import</span> <span class="n">torch</span> <span class="k">as</span> <span class="n">d2l</span>
+</code></pre></div></div>
+
+<h2 id="creating-data">
+<a class="anchor" href="#creating-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating Data</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#defining ohm's law as function, to generate our data
+</span><span class="k">def</span> <span class="nf">ohm</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">I</span> <span class="o">*</span> <span class="n">R</span>
+    <span class="k">return</span> <span class="n">V</span><span class="p">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#create features tensor which contains I, R in ohm's law by using torch.rand
+</span><span class="n">features</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">features</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tensor([[0.6283, 0.8876],
+        [0.8295, 0.6233],
+        [0.2012, 0.7605],
+        [0.1854, 0.7202],
+        [0.1403, 0.3002]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#create labels tensor which contains V in ohm's law calculation by using ohm function defined above
+</span><span class="n">labels</span> <span class="o">=</span> <span class="n">ohm</span><span class="p">(</span><span class="n">features</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">features</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">labels</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tensor([[0.5577],
+        [0.5171],
+        [0.1530],
+        [0.1335],
+        [0.0421]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#plotting traindata
+</span><span class="n">d2l</span><span class="p">.</span><span class="n">set_figsize</span><span class="p">()</span>
+<span class="c1"># The semicolon is for displaying the plot only
+</span><span class="n">d2l</span><span class="p">.</span><span class="n">plt</span><span class="p">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">features</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">1</span><span class="p">)].</span><span class="n">detach</span><span class="p">().</span><span class="n">numpy</span><span class="p">(),</span>
+                <span class="n">labels</span><span class="p">.</span><span class="n">detach</span><span class="p">().</span><span class="n">numpy</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img src="output_19_0.svg" alt="svg"></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># defining data_iterator for giving data into model part by part
+</span><span class="k">def</span> <span class="nf">data_iter</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+    <span class="n">num_examples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_examples</span><span class="p">))</span>
+    <span class="c1"># The examples are read at random, in no particular order
+</span>    <span class="n">random</span><span class="p">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_examples</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+        <span class="n">batch_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="nb">min</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span>
+                                                   <span class="n">batch_size</span><span class="p">,</span> <span class="n">num_examples</span><span class="p">)])</span>
+        <span class="k">yield</span> <span class="n">features</span><span class="p">[</span><span class="n">batch_indices</span><span class="p">],</span> <span class="n">labels</span><span class="p">[</span><span class="n">batch_indices</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="building-model">
+<a class="anchor" href="#building-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building Model</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">w</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">net</span> <span class="o">=</span> <span class="n">d2l</span><span class="p">.</span><span class="n">linreg</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">d2l</span><span class="p">.</span><span class="n">squared_loss</span>
+</code></pre></div></div>
+
+<h2 id="training">
+<a class="anchor" href="#training" aria-hidden="true"><span class="octicon octicon-link"></span></a>Training</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lr</span> <span class="o">=</span> <span class="mf">0.03</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">loss_of_epochs</span> <span class="o">=</span> <span class="p">{}</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">data_iter</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">net</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># Minibatch loss in `X` and `y`
+</span>        <span class="c1"># Compute gradient on `l` with respect to [`w`, `b`]
+</span>        <span class="n">l</span><span class="p">.</span><span class="nb">sum</span><span class="p">().</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">d2l</span><span class="p">.</span><span class="n">sgd</span><span class="p">([</span><span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">],</span> <span class="n">lr</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>  <span class="c1"># Update parameters using their gradient
+</span>    <span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">train_l</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">net</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="n">epoch_number</span> <span class="o">=</span> <span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">epoch_loss</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">train_l</span><span class="p">.</span><span class="n">mean</span><span class="p">())</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'epoch </span><span class="si">{</span><span class="n">epoch_number</span><span class="si">}</span><span class="s">, loss </span><span class="si">{</span><span class="n">epoch_loss</span><span class="p">:</span><span class="n">f</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">loss_of_epochs</span><span class="p">[</span><span class="n">epoch_number</span><span class="p">]</span> <span class="o">=</span> <span class="n">epoch_loss</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>epoch 1, loss 0.004066
+epoch 2, loss 0.003537
+epoch 3, loss 0.003503
+epoch 4, loss 0.003501
+epoch 5, loss 0.003502
+epoch 6, loss 0.003502
+epoch 7, loss 0.003509
+epoch 8, loss 0.003524
+epoch 9, loss 0.003539
+epoch 10, loss 0.003506
+epoch 11, loss 0.003520
+epoch 12, loss 0.003524
+epoch 13, loss 0.003503
+epoch 14, loss 0.003508
+epoch 15, loss 0.003503
+</code></pre></div></div>
+
+<h2 id="results">
+<a class="anchor" href="#results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Results</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#plotting results data
+</span><span class="n">d2l</span><span class="p">.</span><span class="n">set_figsize</span><span class="p">()</span>
+<span class="n">epoch_numbers</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">loss_of_epochs</span><span class="p">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="n">losses</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">loss_of_epochs</span><span class="p">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="n">d2l</span><span class="p">.</span><span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epoch_numbers</span><span class="p">,</span> <span class="n">losses</span><span class="p">,</span> <span class="s">'-v'</span><span class="p">,</span>  <span class="n">c</span><span class="o">=</span><span class="s">'blue'</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s">'red'</span><span class="p">,</span> <span class="n">mec</span><span class="o">=</span><span class="s">'k'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Loss in each epochs'</span><span class="p">)</span>
+<span class="n">d2l</span><span class="p">.</span><span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Epoch"</span><span class="p">)</span>
+<span class="n">d2l</span><span class="p">.</span><span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Squared Error Loss"</span><span class="p">)</span>
+<span class="n">d2l</span><span class="p">.</span><span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;matplotlib.legend.Legend at 0x7fa26d2c9b50&gt;
+</code></pre></div></div>
+
+<p><img src="output_27_1.svg" alt="svg"></p>
+
+<h2 id="conclusion">
+<a class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h2>
+
+<p>As you can see in results, we don’t get considerable decreasing in loss between epochs even there is promising decreasing between epoc 1 and epoch 2. The difference between our first and last epoch loss is just 0.000563(13.8%). This means that our model fails while learning from the data. Also confirms us about our theorical approach at beginning of this document</p>
+
+<h2 id="discussion">
+<a class="anchor" href="#discussion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Discussion</h2>
+
+<p>In this study, our data consists of 10,000 points generated according to the ohm rule. If we had generated the data sample in smaller numbers such as 100 or 1000, we would have observed much more significant reductions in the losses of our Neural Network linear regression model between epochs. So, why does this happen and does our result in this study depend on the number of data samples?</p>
+
+<h2 id="author">
+<a class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
+<p><strong>__<a href="https://www.linkedin.com/in/emrekara-ai/">Emre Kara</a>__</strong></p>
+
+  </div><a class="u-url" href="/blog/deeplearning/d2l/lineerregression/pytorch/exercise/2022/04/18/ohm_law_with_auto_diffs_as_linreg.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A blog that simply contains my works and thing ı want to share</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/emrekaragh" target="_blank" title="emrekaragh"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.linkedin.com/in/emrekara-ai" target="_blank" title="emrekara-ai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#linkedin"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
