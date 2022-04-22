@@ -11,8 +11,8 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Hypotethical and Practical approach for one of D2L Exercise Questions, Can auto differentiations solve the Ohm’s law as Linear Regression Problem?" />
 <meta property="og:description" content="Hypotethical and Practical approach for one of D2L Exercise Questions, Can auto differentiations solve the Ohm’s law as Linear Regression Problem?" />
-<link rel="canonical" href="https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html" />
-<meta property="og:url" content="https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html" />
+<link rel="canonical" href="https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/ohm_law_with_autodiff_as_linreg.html" />
+<meta property="og:url" content="https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/ohm_law_with_autodiff_as_linreg.html" />
 <meta property="og:site_name" content="Emre Kara - Blog" />
 <meta property="og:image" content="https://emrekaragh.github.io/blog/images/ohms_law_formula.png" />
 <meta property="og:type" content="article" />
@@ -21,7 +21,7 @@
 <meta property="twitter:image" content="https://emrekaragh.github.io/blog/images/ohms_law_formula.png" />
 <meta property="twitter:title" content="Can auto differentiations solve the Ohm’s law as Linear Regression Problem?" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emre Kara"},"dateModified":"2022-04-18T00:00:00-05:00","datePublished":"2022-04-18T00:00:00-05:00","description":"Hypotethical and Practical approach for one of D2L Exercise Questions, Can auto differentiations solve the Ohm’s law as Linear Regression Problem?","headline":"Can auto differentiations solve the Ohm’s law as Linear Regression Problem?","image":"https://emrekaragh.github.io/blog/images/ohms_law_formula.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html"},"url":"https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emre Kara"},"dateModified":"2022-04-18T00:00:00-05:00","datePublished":"2022-04-18T00:00:00-05:00","description":"Hypotethical and Practical approach for one of D2L Exercise Questions, Can auto differentiations solve the Ohm’s law as Linear Regression Problem?","headline":"Can auto differentiations solve the Ohm’s law as Linear Regression Problem?","image":"https://emrekaragh.github.io/blog/images/ohms_law_formula.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/ohm_law_with_autodiff_as_linreg.html"},"url":"https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/ohm_law_with_autodiff_as_linreg.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://emrekaragh.github.io/blog/feed.xml" title="Emre Kara - Blog" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -127,24 +127,24 @@ window.onload = wrap_img;
         <div class="pb-5 d-flex flex-justify-center">
           <div class="px-2">
 
-    <a href="https://github.com/emrekaragh/blog/tree/master/_notebooks/2022-04-18-test5.ipynb" role="button" target="_blank">
+    <a href="https://github.com/emrekaragh/blog/tree/master/_notebooks/2022-04-18-ohm_law_with_autodiff_as_linreg.ipynb" role="button" target="_blank">
 <img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/emrekaragh/blog/master?filepath=_notebooks%2F2022-04-18-test5.ipynb" target="_blank">
+    <a href="https://mybinder.org/v2/gh/emrekaragh/blog/master?filepath=_notebooks%2F2022-04-18-ohm_law_with_autodiff_as_linreg.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
     </a>
 </div>
 
           <div class="px-2">
-    <a href="https://colab.research.google.com/github/emrekaragh/blog/blob/master/_notebooks/2022-04-18-test5.ipynb" target="_blank">
+    <a href="https://colab.research.google.com/github/emrekaragh/blog/blob/master/_notebooks/2022-04-18-ohm_law_with_autodiff_as_linreg.ipynb" target="_blank">
         <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
     </a>
 </div>
           <div class="px-2">
-  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Femrekaragh%2Fblog%2Fblob%2Fmaster%2F_notebooks%2F2022-04-18-test5.ipynb" target="_blank">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Femrekaragh%2Fblog%2Fblob%2Fmaster%2F_notebooks%2F2022-04-18-ohm_law_with_autodiff_as_linreg.ipynb" target="_blank">
       <img class="notebook-badge-image" src="/blog/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
   </a>
 </div>
@@ -167,7 +167,7 @@ window.onload = wrap_img;
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
-# file to edit: _notebooks/2022-04-18-test5.ipynb
+# file to edit: _notebooks/2022-04-18-ohm_law_with_autodiff_as_linreg.ipynb
 -->
 
 <div class="container" id="notebook-container">
@@ -243,9 +243,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li>İf we expand the linear equation formula with 2 independent variable as in ohm'law equation, we get something like that:</li>
-</ol>
+<p>1- İf we expand the linear equation formula with 2 independent variable as in ohm'law equation, we get something like that:</p>
 <p>
 $$y = a + bX₁ + cX₂$$
 </p>
@@ -256,9 +254,7 @@ $$y = a + bX₁ + cX₂$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li>Now we can use the I and R as independent variables and V as dependent variable in Ohm's law. If I,R and V were linearly related, ohm's formula would look like this, as you can see this is so far from ohm's law. So, we can say: Ohm's law formula is not suitable for solving the equation with Linear Regression.</li>
-</ol>
+<p>2- Now we can use the I and R as independent variables and V as dependent variable in Ohm's law. If I,R and V were linearly related, ohm's formula would look like this, as you can see this is so far from ohm's law. So, we can say: Ohm's law formula is not suitable for solving the equation with Linear Regression.</p>
 <p>
 $$V = a + bI + cR$$
 </p>
@@ -269,14 +265,13 @@ $$V = a + bI + cR$$
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ol>
-<li>
-<p>As you can remember, Our challenge was not only applying Linear Regression on ohm'law, Also using automatic differentiations to learn parameters while doing this</p>
-<p>The using auto differentiations to learn parameters is called "Gradient Descent"</p>
-<p>Learning the parameters is optimization method which tries to find optimal parameters which is giving minimum error. And Gradient Descent is the method that tells us which way to go to find optimal parameters.</p>
-<p>In the first two steps, I think we proved that we cannot use automatic derivatives to learn parameters by using math and equations, But let's get our hands dirty and show it practically too</p>
-</li>
-</ol>
+<p>3- As you can remember, Our challenge was not only applying Linear Regression on ohm'law, Also using automatic differentiations to learn parameters while doing this</p>
+
+<pre><code>The using auto differentiations to learn parameters is called "Gradient Descent"
+
+Learning the parameters is optimization method which tries to find optimal parameters which is giving minimum error. And Gradient Descent is the method that tells us which way to go to find optimal parameters. 
+
+In the first two steps, I think we proved that we cannot use automatic derivatives to learn parameters by using math and equations, But let's get our hands dirty and show it practically too</code></pre>
 
 </div>
 </div>
@@ -11988,25 +11983,19 @@ z
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p></p>
 <div class="footnotes"><p id="fn-1">1. <a href="https://d2l.ai/index.html">Dive Into Deep Learning book, Section 3.2.9</a><a href="#fnref-1" class="footnote footnotes">↩</a></p></div>
-<div class="footnotes">
-<p id="fn-2">2. <a href="https://en.wikipedia.org/wiki/Ohm%27s_law">Ohm</a><a href="#fnref-2" class="footnote footnotes">↩</a>&lt;/p&gt;&lt;/div&gt;
-</p>
-<div class="footnotes"><p id="fn-3">3. <a href="http://www.stat.yale.edu/Courses/1997-98/101/linreg.htm">Yale University Linear Regression Course 1997-98</a><a href="#fnref-3" class="footnote footnotes">↩</a></p></div>&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
- 
+<div class="footnotes"><p id="fn-2">2. <a href="https://en.wikipedia.org/wiki/Ohm%27s_law">Ohm law</a><a href="#fnref-2" class="footnote footnotes">↩</a></p></div>
+<div class="footnotes"><p id="fn-3">3. <a href="http://www.stat.yale.edu/Courses/1997-98/101/linreg.htm">Yale University Linear Regression Course 1997-98</a><a href="#fnref-3" class="footnote footnotes">↩</a></p></div>
 
 </div>
 </div>
-</div></div>
 </div>
+</div>
+
 
 
   </div><!-- from https://github.com/utterance/utterances -->
@@ -12017,7 +12006,7 @@ z
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html" hidden></a>
+</script><a class="u-url" href="/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/ohm_law_with_autodiff_as_linreg.html" hidden></a>
 </article>
 
       </div>
