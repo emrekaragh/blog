@@ -14,14 +14,14 @@
 <link rel="canonical" href="https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html" />
 <meta property="og:url" content="https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html" />
 <meta property="og:site_name" content="Emre Kara - Blog" />
-<meta property="og:image" content="https://emrekaragh.github.io/blog/_notebooks/my_icons/ohms_law_formula.png" />
+<meta property="og:image" content="https://emrekaragh.github.io/blog/images/ohms_law_formula.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-04-18T00:00:00-05:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://emrekaragh.github.io/blog/_notebooks/my_icons/ohms_law_formula.png" />
+<meta property="twitter:image" content="https://emrekaragh.github.io/blog/images/ohms_law_formula.png" />
 <meta property="twitter:title" content="Can auto differentiations solve the Ohm’s law as Linear Regression Problem?" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emre Kara"},"dateModified":"2022-04-18T00:00:00-05:00","datePublished":"2022-04-18T00:00:00-05:00","description":"Hypotethical and Practical approach for one of D2L Exercise Questions, Can auto differentiations solve the Ohm’s law as Linear Regression Problem?","headline":"Can auto differentiations solve the Ohm’s law as Linear Regression Problem?","image":"https://emrekaragh.github.io/blog/_notebooks/my_icons/ohms_law_formula.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html"},"url":"https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Emre Kara"},"dateModified":"2022-04-18T00:00:00-05:00","datePublished":"2022-04-18T00:00:00-05:00","description":"Hypotethical and Practical approach for one of D2L Exercise Questions, Can auto differentiations solve the Ohm’s law as Linear Regression Problem?","headline":"Can auto differentiations solve the Ohm’s law as Linear Regression Problem?","image":"https://emrekaragh.github.io/blog/images/ohms_law_formula.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html"},"url":"https://emrekaragh.github.io/blog/jupyter/d2l/deeplearning/lineerregression/2022/04/18/test5.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://emrekaragh.github.io/blog/feed.xml" title="Emre Kara - Blog" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -202,7 +202,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Ohm's law:</strong></p>
+<p><strong>Ohm's law:</strong><sup id="fnref-2" class="footnote-ref"><a href="#fn-2">2</a></sup></p>
 
 </div>
 </div>
@@ -235,7 +235,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>"A linear regression line has an equation of the form $Y = a + bX$, where $X$ is the explanatory variable and $Y$ is the dependent variable. The slope of the line is $b$, and $a$ is the intercept (the value of $y$ when $x = 0$)." <sup id="fnref-2" class="footnote-ref"><a href="#fn-2">2</a></sup></p>
+<p>"A linear regression line has an equation of the form $Y = a + bX$, where $X$ is the explanatory variable and $Y$ is the dependent variable. The slope of the line is $b$, and $a$ is the intercept (the value of $y$ when $x = 0$)."<sup id="fnref-3" class="footnote-ref"><a href="#fn-3">3</a></sup></p>
 
 </div>
 </div>
@@ -11988,18 +11988,25 @@ z
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p></p>
 <div class="footnotes"><p id="fn-1">1. <a href="https://d2l.ai/index.html">Dive Into Deep Learning book, Section 3.2.9</a><a href="#fnref-1" class="footnote footnotes">↩</a></p></div>
-<div class="footnotes"><p id="fn-2">2. <a href="http://www.stat.yale.edu/Courses/1997-98/101/linreg.htm">Yale University Linear Regression Course 1997-98</a><a href="#fnref-2" class="footnote footnotes">↩</a></p></div>
+<div class="footnotes">
+<p id="fn-2">2. <a href="https://en.wikipedia.org/wiki/Ohm%27s_law">Ohm</a><a href="#fnref-2" class="footnote footnotes">↩</a>&lt;/p&gt;&lt;/div&gt;
+</p>
+<div class="footnotes"><p id="fn-3">3. <a href="http://www.stat.yale.edu/Courses/1997-98/101/linreg.htm">Yale University Linear Regression Course 1997-98</a><a href="#fnref-3" class="footnote footnotes">↩</a></p></div>&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ 
 
 </div>
 </div>
+</div></div>
 </div>
-</div>
-
 
 
   </div><!-- from https://github.com/utterance/utterances -->
