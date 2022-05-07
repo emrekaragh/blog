@@ -61,6 +61,10 @@ The answers to the following questions in the this section are taken from an int
 out: I'm not so sure January is the best month
 ```
 
+{% include youtube.html text="https://youtu.be/tvDxEgQQK28" %}
+
+{% include youtube.html base_url="https://youtu.be/tvDxEgQQK28" %}
+
 {% include alert.html text="You can include alert boxes" %}
 
 {% include info.html text="You can include info boxes" %}
