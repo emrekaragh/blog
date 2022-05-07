@@ -55,17 +55,6 @@ The answers to the following questions in the this section are taken from an int
 out: I'm not so sure January is the best month
 ```
 
-{% include alert.html text="You can include alert boxes" %}
-
-{% include info.html text="You can include info boxes" %}
-
-{% include important.html text="You can include important boxes" %}
-
-{% include note.html text="You can include note boxes" %}
-
-{% include tip.html text="You can include tip boxes" %}
-
-{% include warning.html text="You can include warning boxes" %}
 
 
 [^1]: S
