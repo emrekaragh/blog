@@ -67,6 +67,6 @@ out: I'm not so sure January is the best month
 
 {% include warning.html text="You can include warning boxes" %}
 
-![]({{ site.baseurl }}/images/logo.png "my logo")
+![](https://github.com/emrekaragh/blog/blob/master/images/logo.png)
 
 [^1]: S
