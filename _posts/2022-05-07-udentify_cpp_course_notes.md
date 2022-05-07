@@ -6,7 +6,7 @@ categories: [markdown]
 comments: true
 author: Emre Kara
 categories: [Programming, C++, CourseNotes]
-title: Udentify - C++ For Programmers\: My Course Notes
+title: Udentify C++ For Programmers Course - My Course Notes
 image: images/cpp_logo.png
 ---
 
