@@ -21,7 +21,7 @@ The answers to the following questions in the this section are taken from an int
 ### What is C++?
 
 > C++ is a programming language. Its primarily for application that are very demanding on performance, energy consumption and speed.     
-
+> youtube: https://www.youtube.com/watch?v=tvDxEgQQK28&t=3s
 ### Why learn C++?
 
 > 1. C++ is used in a wide variety of fields.
