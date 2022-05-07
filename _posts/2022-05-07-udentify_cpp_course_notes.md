@@ -1,11 +1,9 @@
 ---
-
 toc: true
 layout: post
 description: My course note bout Udentify C++ course
 categories: [markdown]
 title: Udentify - C++ For Programmers: My Course Notes
-
 ---
 
 # Udentify - C++ For Programmers: My Course Notes
@@ -14,7 +12,7 @@ bu yazı kesinlikle kursun bir özeti değildir, kurs içeriği gerekli ve mükk
 
 ## Introduction
 
-The answers to the following questions in the this section are taken from an interview with [Bjarne Stroustrup]([Bjarne Stroustrup's Homepage](https://www.stroustrup.com/index.html)) (Designer and original implementer of C++) [^1]
+The answers to the following questions in the this section are taken from an interview with [Bjarne Stroustrup]([Bjarne Stroustrup's Homepage](https://www.stroustrup.com/index.html)){:target="_blank"} (Designer and original implementer of C++) [^1]
 
 ### What is C++?
 
@@ -69,10 +67,6 @@ out: I'm not so sure January is the best month
 
 {% include warning.html text="You can include warning boxes" %}
 
-
-
-![]({{%20site.baseurl%20}}/images/logo.png%20"fast.ai's%20logo")
-
-
+![]({{ site.baseurl }}/images/logo.png "my logo")
 
 [^1]: S
