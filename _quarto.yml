@@ -14,6 +14,8 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/in/emrekara-ai/
         target: _blank
+  google-analytics: 
+    tracking-id: "G-43792F961J"
 format:
   html:
     theme: 
