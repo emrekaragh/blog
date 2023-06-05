@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: 6acb50e1-0a80-4a3b-82d1-d5122317b5d6
+      url: 'https://emrekara.quarto.pub/blog'
