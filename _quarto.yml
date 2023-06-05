@@ -7,6 +7,7 @@ website:
   navbar:
     right:
       - index.qmd
+      - posts.qmd
       - about.qmd
       - icon: github
         href: https://github.com/emrekaragh

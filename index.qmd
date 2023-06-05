@@ -1,13 +1,11 @@
 ---
-title: "Posts"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: true
-  filter-ui: true
+title: "Can Humans Learn?"
 page-layout: full
 title-block-banner: true
 comments: false
 ---
+
+##  [Take me to the Posts](posts.qmd)
+
+![](logo_png_transparent.png)
+
