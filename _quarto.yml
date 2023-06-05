@@ -2,6 +2,7 @@ project:
   type: website
 
 website:
+  favicon: icon.png
   title: "EmreKara-Blog"
   navbar:
     right:
