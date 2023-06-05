@@ -16,6 +16,9 @@ website:
         target: _blank
   google-analytics: 
     tracking-id: "G-43792F961J"
+  comments:
+    giscus: 
+      repo: emrekaragh/blog
 format:
   html:
     theme: 
