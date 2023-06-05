@@ -1,19 +1,27 @@
 ---
 title: "About"
-image: profile.jpg
+image: /src/imgs/profile.jpg
 about:
   template: jolla
   links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/emrekara-ai/
+    - icon: github
+      text: Github
+      href: https://github.com/emrekaragh
     - icon: twitter
       text: Twitter
       href: https://twitter.com
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com
-    - icon: github
-      text: Github
-      href: https://github.com
 
 ---
 
-About this blog
+Hi, this is Emre. I am a Computer Engineer interested in Data Science, Machine Learning, and related topics.
+
+I accidentally fell to Earth in 1998. Since then, I have been trying to make my journey on this planet more exciting. Along the way, I have developed some passions. Unfortunately, I can’t write about all of them here (but if you buy me a drink, I could be chatty about it, I suppose).
+
+However, I have decided to share a few of them (Machine Learning, Data Science, Software Development) with you, and that’s why I opened this blog. Please feel free to read, copy, discuss, and contribute to the contents (that belongs to me) of this blog.
+
+Finally, if there are any food delivery people around you, please tell them not to pack hot food and cold food in the same package, as their temperatures equalize and it is the worst thing that can happen.
+
+My contact information is in the footer. Thank you.
