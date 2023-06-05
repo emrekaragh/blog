@@ -1,4 +1,5 @@
 ---
+draft: true
 title: "Udacity C++ Course Notes"
 description: "My course note about Udentify C++ course"
 date: "2022-05-07"
@@ -6,7 +7,7 @@ toc: true
 badges: true
 author: Emre Kara
 categories: [Programming, C++, CourseNotes]
-image: cpp_logo.png
+image: https://raw.githubusercontent.com/isocpp/logos/master/cpp_logo.png
 ---
 
 # Udacity - C++ For Programmers: My Course Notes
