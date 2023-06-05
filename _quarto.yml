@@ -10,8 +10,10 @@ website:
       - about.qmd
       - icon: github
         href: https://github.com/emrekaragh
+        target: _blank
       - icon: linkedin
         href: https://www.linkedin.com/in/emrekara-ai/
+        target: _blank
 format:
   html:
     theme: 

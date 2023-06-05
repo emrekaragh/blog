@@ -62,4 +62,4 @@ The answers to the following questions in the this section are taken from an int
 out: I'm not so sure January is the best month
 ```
 
-[^1]: [Bjarne Stroustrup's personel website](https://www.stroustrup.com){:target="https://www.stroustrup.com"}
+[^1]: <a href="https://www.stroustrup.com" target="_blank">Bjarne Stroustrup's personel website</a>
