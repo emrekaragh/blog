@@ -20,11 +20,11 @@ about:
 
 ---
 
-Hi, this is Emre. I am a Computer Engineer interested in Data Science, Machine Learning, and related topics.
+Hi, this is Emre. I am a Computer Engineer interested in Computer Vision, Machine Learning, Data Science, Software Development and related topics.
 
 I accidentally fell to Earth in 1998. Since then, I have been trying to make my journey on this planet more exciting. Along the way, I have developed some passions. Unfortunately, I can’t write about all of them here (but if you buy me a drink, I could be chatty about it, I suppose).
 
-However, I have decided to share a few of them (Machine Learning, Data Science, Software Development) with you, and that’s why I opened this blog. Please feel free to read, copy, discuss, and contribute to the contents (that belongs to me) of this blog.
+However, I have decided to share a few of them with you, and that’s why I opened this blog. Please feel free to read, copy, discuss, and contribute to the contents (that belongs to me) of this blog.
 
 Finally, if there are any food delivery people around you, please tell them not to pack hot food and cold food in the same package, as their temperatures equalize and it is the worst thing that can happen.
 
